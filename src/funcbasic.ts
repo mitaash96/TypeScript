@@ -8,23 +8,55 @@ export const isPrime = (n: number): boolean => {
     return true
 }
 
-export const fizzBuzz = (n: number): Array<string> => {
-    var arr = Array.from(Array(n).keys()).map(x => x+1);
-    var arr1 = arr.map(x => (x % 3 > 0 || x % 5 > 0) ? x.toString() : (x % 15 === 0 ? "FizzBuzz" : (x % 3 === 0 ? "Fizz" : "Buzz")));
+// FizzBuzz
+export const fizzBuzz = (n: number): Array<number|string> => {
+    var arr : Array<number> = Array.from(Array(n).keys()).map(x => x+1);
+    var arr1 = arr.map(x => x%15===0?"FizzBuzz":x%3===0?"Fizz":x%5===0? "Buzz": x)
     return arr1;
 }
 
+// fibonacci
+export const fiboNacci = (n:number) => {
+    var fibo = [0,1]
+    if (n===0){
+        return [fibo[0]]
+    }
+    else if (n===1){
+        return fibo
+    }
+    else{
+        for (var i=1; i<n; i++){
+            fibo.push(fibo[i] + fibo[i-1]);
+        }
+        return fibo
+    }
+}
 
+export class arrayMani{
+    private arr: Array<any>;
+    constructor(arr: any[]){
+        this.arr = arr;
+    };
+    min(this:any) {
+        return Math.min(...this.arr)
+    }
+    max(this:any) {
+        return Math.max(...this.arr)
+    }
+}
 
+// Object manipulation
+export class objectMani{
+    private obj: Object
+    constructor(obj: Object){
+        this.obj = obj;
+    }
+    keys(this){
+        return Object.keys(this.obj);
+    }
+}
 
-/*
-FizzBuzz: Write a program that prints the numbers from 1 to 100. For multiples of three, print "Fizz" instead of the number, and for multiples of five, print "Buzz". For numbers that are multiples of both three and five, print "FizzBuzz".
-
-Fibonacci Sequence: Generate the Fibonacci sequence up to a given number n and store the sequence in an array.
-
-Array Manipulation: Implement various array manipulation functions such as finding the maximum or minimum value in an array, reversing the array, removing duplicates, or sorting the array.
-
-Object Manipulation: Create functions to perform operations on JavaScript objects, such as merging objects, checking for the presence of a specific property, or converting objects to arrays.
-
-Random Quote Generator: Create a program that displays a random quote from an array of quotes each time it is run.
-*/
+export const randomQuote = () :string => {
+    var quotes = ["Ae vedya", "Nahi aaya hoon", "mast code likha hai", "Abe jaa na lavde"];
+    return quotes[Math.round(Math.random() * quotes.length)]
+}
